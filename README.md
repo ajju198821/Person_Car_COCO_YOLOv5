@@ -28,8 +28,6 @@ To train our detector we take the following steps:
 
 # Train Custom YOLOv5 Detector
 
-### Next, we'll fire off training!
-
 Here, we are able to pass a number of arguments:
 - **img:** define input image size
 - **batch:** determine batch size
@@ -41,3 +39,4 @@ Here, we are able to pass a number of arguments:
 - **cache:** cache images for faster training
         
       !python train.py --img <image size> --batch <batch size> --epochs <# of epochs> --data <path to data.yaml> --cfg <path to yolov5s.yaml> --weights '' --name <result file>  --cache
+
