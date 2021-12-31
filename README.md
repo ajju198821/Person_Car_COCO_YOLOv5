@@ -43,8 +43,14 @@ Here, we are able to pass a number of arguments:
 
 # Evaluate YOLOv5 performance
   
-  I ran this Notebook in Colab by using its GPU for 100 epochs. Images below present BBox and objectiveness for both training and validation data, detecting precision with recall, mean Average Precision.
+  I ran this Notebook in Colab by using its GPU for 100 epochs, and batch size - 16 with model YOLOv5s. Images below present BBox and objectiveness for both training and validation data, detecting precision with recall, mean Average Precision.
   
-  I decided to discuss only BOX and mAP. BOX is one of the most common evaluation metrics applied in object detection. In general, it defines the area of taken into account shapes and is a good indicator of a loss function. 
+  We will discuss about BOX and mAP. BOX is one of the most common evaluation metrics applied in object detection. In general, it defines the area of taken into account shapes and is a good indicator of a loss function. Whereas, mAP - mean Average Precision measures the accuracy of the examined object detector. This is correlated with precision and recall. With this model, the results seems to not generalized well. By the Colab, this model trained for around 1hr 23 mins. 
   
   ![results](https://user-images.githubusercontent.com/47291136/147809027-82d22d1c-2a3d-42d7-a1c0-625d187dfb71.png)
+  
+  # Visualize YOLOv5 results
+  
+  | Test image1      | Test image 2 |
+|------------|-------------|
+| <img src="https://media.wired.com/photos/5926db217034dc5f91becd6b/master/w_582,c_limit/so-logo-s.jpg" width="250"> | <img src="https://mk0jobadderjftub56m0.kinstacdn.com/wp-content/uploads/stackoverflow.com-300.jpg" width="250"> |
