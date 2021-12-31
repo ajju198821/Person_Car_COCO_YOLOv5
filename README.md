@@ -1,56 +1,152 @@
-# Person_Car_COCO_YOLOv5
+<a href="https://apps.apple.com/app/id1452689527" target="_blank">
+<img src="https://user-images.githubusercontent.com/26833433/98699617-a1595a00-2377-11eb-8145-fc674eb9b1a7.jpg" width="1000"></a>
+&nbsp
 
-  # Introduction
-  
-  This project is based on the [YOLOv5 repository](https://github.com/ultralytics/yolov5) by [Ultralytics](https://www.ultralytics.com/). It shows training on **two label (person and car) object detection**.
-  
-  ### Steps Covered in this Tutorial
+<a href="https://github.com/ultralytics/yolov5/actions"><img src="https://github.com/ultralytics/yolov5/workflows/CI%20CPU%20testing/badge.svg" alt="CI CPU testing"></a>
 
-In this project, we will walk through the steps required to train YOLOv5. We use a [COCO dataset](https://evp-ml-data.s3.us-east-2.amazonaws.com/ml-interview/openimages-personcar/trainval.tar.gz) with 2 classes (person and car).
+This repository represents Ultralytics open-source research into future object detection methods, and incorporates lessons learned and best practices evolved over thousands of hours of training and evolution on anonymized client datasets. **All code and models are under active development, and are subject to modification or deletion without notice.** Use at your own risk.
 
-To train our detector we take the following steps:
+<img src="https://user-images.githubusercontent.com/26833433/103594689-455e0e00-4eae-11eb-9cdf-7d753e2ceeeb.png" width="1000">** GPU Speed measures end-to-end time per image averaged over 5000 COCO val2017 images using a V100 GPU with batch size 32, and includes image preprocessing, PyTorch FP16 inference, postprocessing and NMS. EfficientDet data from [google/automl](https://github.com/google/automl) at batch size 8.
 
-* Data preparation
-* Run YOLOv5 training
-* Evaluate YOLOv5 performance
-* Visualize YOLOv5 training data
+- **January 5, 2021**: [v4.0 release](https://github.com/ultralytics/yolov5/releases/tag/v4.0): nn.SiLU() activations, [Weights & Biases](https://wandb.ai/) logging, [PyTorch Hub](https://pytorch.org/hub/ultralytics_yolov5/) integration.
+- **August 13, 2020**: [v3.0 release](https://github.com/ultralytics/yolov5/releases/tag/v3.0): nn.Hardswish() activations, data autodownload, native AMP.
+- **July 23, 2020**: [v2.0 release](https://github.com/ultralytics/yolov5/releases/tag/v2.0): improved model definition, training and mAP.
+- **June 22, 2020**: [PANet](https://arxiv.org/abs/1803.01534) updates: new heads, reduced parameters, improved speed and mAP [364fcfd](https://github.com/ultralytics/yolov5/commit/364fcfd7dba53f46edd4f04c037a039c0a287972).
+- **June 19, 2020**: [FP16](https://pytorch.org/docs/stable/nn.html#torch.nn.Module.half) as new default for smaller checkpoints and faster inference [d4c6674](https://github.com/ultralytics/yolov5/commit/d4c6674c98e19df4c40e33a777610a18d1961145).
 
-### Data Preparation
-    Dataset details
-       Number of images: 2239
-       Size: 750 MB (approx.)
-       Categories: 2 (person and car)
-       Annotation format: COCO (.JSON)
-       
- Annotation formate of the given dataset (.JSON) is converted to YOLOv5 annotation format by using the [GitHub repo](https://github.com/pylabel-project/samples/blob/main/coco2yolov5.ipynb) and image data splited as test, validation and test sets by [Roboflow](https://roboflow.com). This is a smart web application that automatically interlocks images with labels. It offers many functions such as dataset health check which can recognise incorrectly labelled images or even image transformations like preprocessing and augmentation.
 
-# Train YOLOv5s Detector
+## Pretrained Checkpoints
 
-Here, we are able to pass a number of arguments:
-- **img:** define input image size
-- **batch:** determine batch size
-- **epochs:** define the number of training epochs. (Note: often, 3000+ are common here!)
-- **data:** set the path to our yaml file
-- **cfg:** specify our model configuration
-- **weights:** specify a custom path to weights. (Note: you can download weights from the Ultralytics Google Drive [folder](https://drive.google.com/open?id=1Drs_Aiu7xx6S-ix95f9kNsA6ueKRpN2J))
-- **name:** result names
-- **cache:** cache images for faster training
-        
-      !python train.py --img <image size> --batch <batch size> --epochs <# of epochs> --data <path to data.yaml> | 
-      --cfg <path to yolov5s.yaml> --weights '' --name <result file>  --cache
+| Model | size | AP<sup>val</sup> | AP<sup>test</sup> | AP<sub>50</sub> | Speed<sub>V100</sub> | FPS<sub>V100</sub> || params | GFLOPS |
+|---------- |------ |------ |------ |------ | -------- | ------| ------ |------  |  :------: |
+| [YOLOv5s](https://github.com/ultralytics/yolov5/releases)    |640 |36.8     |36.8     |55.6     |**2.2ms** |**455** ||7.3M   |17.0
+| [YOLOv5m](https://github.com/ultralytics/yolov5/releases)    |640 |44.5     |44.5     |63.1     |2.9ms     |345     ||21.4M  |51.3
+| [YOLOv5l](https://github.com/ultralytics/yolov5/releases)    |640 |48.1     |48.1     |66.4     |3.8ms     |264     ||47.0M  |115.4
+| [YOLOv5x](https://github.com/ultralytics/yolov5/releases)    |640 |**50.1** |**50.1** |**68.7** |6.0ms     |167     ||87.7M  |218.8
+| | | | | | | || |
+| [YOLOv5x](https://github.com/ultralytics/yolov5/releases) + TTA |832 |**51.9** |**51.9** |**69.6** |24.9ms |40      ||87.7M  |1005.3
 
-# Evaluate YOLOv5 performance
-  
-  I ran this Notebook in Colab by using its GPU for 100 epochs, and batch size - 16 with model YOLOv5s. Images below present BBox and objectiveness for both training and validation data, detecting precision with recall, mean Average Precision.
-  
-  We will discuss about BOX and mAP. BOX is one of the most common evaluation metrics applied in object detection. In general, it defines the area of taken into account shapes and is a good indicator of a loss function. Whereas, mAP - mean Average Precision measures the accuracy of the examined object detector. This is correlated with precision and recall. With this model, the results seems to not generalized well. By the Colab, this model trained for around 1hr 23 mins. 
-  
-  ![results](https://user-images.githubusercontent.com/47291136/147809027-82d22d1c-2a3d-42d7-a1c0-625d187dfb71.png)
-  
-  # Visualize YOLOv5 results
-  
-   Below are the some results predected on test data by the model YOLOv5s.
-   
-  | Test image 1      | Test image 2 | Test image 3 |
-|------------|-------------|-------------|
-| ![image_000002235_jpg rf 11c93ed7c29325c2339f9e9e02cd7a5d](https://user-images.githubusercontent.com/47291136/147809778-cc8716af-c91b-4dbb-ac50-6e255761c400.jpg) | ![image_000001892_jpg rf 74044ad2084bf8b09ba4b10f8410ac7e](https://user-images.githubusercontent.com/47291136/147809903-3a868611-ed1d-4ded-9d5b-b9dc61d7ab9e.jpg) | ![image_000001576_jpg rf 5250624f2e5af885ea1d1a20f518ac2b](https://user-images.githubusercontent.com/47291136/147810091-4507992e-966b-4079-971d-b5ce8bd10b06.jpg) |
+<!--- 
+| [YOLOv5l6](https://github.com/ultralytics/yolov5/releases)   |640 |49.0     |49.0     |67.4     |4.1ms     |244     ||77.2M  |117.7
+| [YOLOv5l6](https://github.com/ultralytics/yolov5/releases)   |1280 |53.0     |53.0     |70.8     |12.3ms     |81     ||77.2M  |117.7
+--->
+
+** AP<sup>test</sup> denotes COCO [test-dev2017](http://cocodataset.org/#upload) server results, all other AP results denote val2017 accuracy.  
+** All AP numbers are for single-model single-scale without ensemble or TTA. **Reproduce mAP** by `python test.py --data coco.yaml --img 640 --conf 0.001 --iou 0.65`  
+** Speed<sub>GPU</sub> averaged over 5000 COCO val2017 images using a GCP [n1-standard-16](https://cloud.google.com/compute/docs/machine-types#n1_standard_machine_types) V100 instance, and includes image preprocessing, FP16 inference, postprocessing and NMS. NMS is 1-2ms/img.  **Reproduce speed** by `python test.py --data coco.yaml --img 640 --conf 0.25 --iou 0.45`  
+** All checkpoints are trained to 300 epochs with default settings and hyperparameters (no autoaugmentation). 
+** Test Time Augmentation ([TTA](https://github.com/ultralytics/yolov5/issues/303)) runs at 3 image sizes. **Reproduce TTA** by `python test.py --data coco.yaml --img 832 --iou 0.65 --augment` 
+
+
+## Requirements
+
+Python 3.8 or later with all [requirements.txt](https://github.com/ultralytics/yolov5/blob/master/requirements.txt) dependencies installed, including `torch>=1.7`. To install run:
+```bash
+$ pip install -r requirements.txt
+```
+
+
+## Tutorials
+
+* [Train Custom Data](https://github.com/ultralytics/yolov5/wiki/Train-Custom-Data)&nbsp; 🚀 RECOMMENDED
+* [Weights & Biases Logging](https://github.com/ultralytics/yolov5/issues/1289)&nbsp; 🌟 NEW
+* [Multi-GPU Training](https://github.com/ultralytics/yolov5/issues/475)
+* [PyTorch Hub](https://github.com/ultralytics/yolov5/issues/36)&nbsp; ⭐ NEW
+* [ONNX and TorchScript Export](https://github.com/ultralytics/yolov5/issues/251)
+* [Test-Time Augmentation (TTA)](https://github.com/ultralytics/yolov5/issues/303)
+* [Model Ensembling](https://github.com/ultralytics/yolov5/issues/318)
+* [Model Pruning/Sparsity](https://github.com/ultralytics/yolov5/issues/304)
+* [Hyperparameter Evolution](https://github.com/ultralytics/yolov5/issues/607)
+* [Transfer Learning with Frozen Layers](https://github.com/ultralytics/yolov5/issues/1314)&nbsp; ⭐ NEW
+* [TensorRT Deployment](https://github.com/wang-xinyu/tensorrtx)
+
+
+## Environments
+
+YOLOv5 may be run in any of the following up-to-date verified environments (with all dependencies including [CUDA](https://developer.nvidia.com/cuda)/[CUDNN](https://developer.nvidia.com/cudnn), [Python](https://www.python.org/) and [PyTorch](https://pytorch.org/) preinstalled):
+
+- **Google Colab and Kaggle** notebooks with free GPU: <a href="https://colab.research.google.com/github/ultralytics/yolov5/blob/master/tutorial.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"></a> <a href="https://www.kaggle.com/ultralytics/yolov5"><img src="https://kaggle.com/static/images/open-in-kaggle.svg" alt="Open In Kaggle"></a>
+- **Google Cloud** Deep Learning VM. See [GCP Quickstart Guide](https://github.com/ultralytics/yolov5/wiki/GCP-Quickstart)
+- **Amazon** Deep Learning AMI. See [AWS Quickstart Guide](https://github.com/ultralytics/yolov5/wiki/AWS-Quickstart)
+- **Docker Image**. See [Docker Quickstart Guide](https://github.com/ultralytics/yolov5/wiki/Docker-Quickstart) <a href="https://hub.docker.com/r/ultralytics/yolov5"><img src="https://img.shields.io/docker/pulls/ultralytics/yolov5?logo=docker" alt="Docker Pulls"></a>
+
+
+## Inference
+
+detect.py runs inference on a variety of sources, downloading models automatically from the [latest YOLOv5 release](https://github.com/ultralytics/yolov5/releases) and saving results to `runs/detect`.
+```bash
+$ python detect.py --source 0  # webcam
+                            file.jpg  # image 
+                            file.mp4  # video
+                            path/  # directory
+                            path/*.jpg  # glob
+                            rtsp://170.93.143.139/rtplive/470011e600ef003a004ee33696235daa  # rtsp stream
+                            rtmp://192.168.1.105/live/test  # rtmp stream
+                            http://112.50.243.8/PLTV/88888888/224/3221225900/1.m3u8  # http stream
+```
+
+To run inference on example images in `data/images`:
+```bash
+$ python detect.py --source data/images --weights yolov5s.pt --conf 0.25
+
+Namespace(agnostic_nms=False, augment=False, classes=None, conf_thres=0.25, device='', exist_ok=False, img_size=640, iou_thres=0.45, name='exp', project='runs/detect', save_conf=False, save_txt=False, source='data/images/', update=False, view_img=False, weights=['yolov5s.pt'])
+YOLOv5 v4.0-96-g83dc1b4 torch 1.7.0+cu101 CUDA:0 (Tesla V100-SXM2-16GB, 16160.5MB)
+
+Fusing layers... 
+Model Summary: 224 layers, 7266973 parameters, 0 gradients, 17.0 GFLOPS
+image 1/2 /content/yolov5/data/images/bus.jpg: 640x480 4 persons, 1 bus, Done. (0.010s)
+image 2/2 /content/yolov5/data/images/zidane.jpg: 384x640 2 persons, 1 tie, Done. (0.011s)
+Results saved to runs/detect/exp2
+Done. (0.103s)
+```
+<img src="https://user-images.githubusercontent.com/26833433/97107365-685a8d80-16c7-11eb-8c2e-83aac701d8b9.jpeg" width="500">  
+
+### PyTorch Hub
+
+To run **batched inference** with YOLOv5 and [PyTorch Hub](https://github.com/ultralytics/yolov5/issues/36):
+```python
+import torch
+
+# Model
+model = torch.hub.load('ultralytics/yolov5', 'yolov5s', pretrained=True)
+
+# Images
+dir = 'https://github.com/ultralytics/yolov5/raw/master/data/images/'
+imgs = [dir + f for f in ('zidane.jpg', 'bus.jpg')]  # batched list of images
+
+# Inference
+results = model(imgs)
+results.print()  # or .show(), .save()
+```
+
+
+## Training
+
+Run commands below to reproduce results on [COCO](https://github.com/ultralytics/yolov5/blob/master/data/scripts/get_coco.sh) dataset (dataset auto-downloads on first use). Training times for YOLOv5s/m/l/x are 2/4/6/8 days on a single V100 (multi-GPU times faster). Use the largest `--batch-size` your GPU allows (batch sizes shown for 16 GB devices).
+```bash
+$ python train.py --data coco.yaml --cfg yolov5s.yaml --weights '' --batch-size 64
+                                         yolov5m                                40
+                                         yolov5l                                24
+                                         yolov5x                                16
+```
+<img src="https://user-images.githubusercontent.com/26833433/90222759-949d8800-ddc1-11ea-9fa1-1c97eed2b963.png" width="900">
+
+
+## Citation
+
+[![DOI](https://zenodo.org/badge/264818686.svg)](https://zenodo.org/badge/latestdoi/264818686)
+
+
+## About Us
+
+Ultralytics is a U.S.-based particle physics and AI startup with over 6 years of expertise supporting government, academic and business clients. We offer a wide range of vision AI services, spanning from simple expert advice up to delivery of fully customized, end-to-end production solutions, including:
+- **Cloud-based AI** systems operating on **hundreds of HD video streams in realtime.**
+- **Edge AI** integrated into custom iOS and Android apps for realtime **30 FPS video inference.**
+- **Custom data training**, hyperparameter evolution, and model exportation to any destination.
+
+For business inquiries and professional support requests please visit us at https://www.ultralytics.com. 
+
+
+## Contact
+
+**Issues should be raised directly in the repository.** For business inquiries or professional support requests please visit https://www.ultralytics.com or email Glenn Jocher at glenn.jocher@ultralytics.com. 
