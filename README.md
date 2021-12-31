@@ -14,8 +14,6 @@ To train our detector we take the following steps:
 * Run YOLOv5 training
 * Evaluate YOLOv5 performance
 * Visualize YOLOv5 training data
-* Run YOLOv5 inference on test images
-* Export saved YOLOv5 weights for future inference
 
 ### Data Preparation
     Dataset details
@@ -51,6 +49,8 @@ Here, we are able to pass a number of arguments:
   
   # Visualize YOLOv5 results
   
+   Below are the some results predected on test data by the model YOLOv5s.
+   
   | Test image 1      | Test image 2 | Test image 3 |
 |------------|-------------|-------------|
-| ![image_000002235_jpg rf 11c93ed7c29325c2339f9e9e02cd7a5d](https://user-images.githubusercontent.com/47291136/147809778-cc8716af-c91b-4dbb-ac50-6e255761c400.jpg) | ![image_000001892_jpg rf 74044ad2084bf8b09ba4b10f8410ac7e](https://user-images.githubusercontent.com/47291136/147809903-3a868611-ed1d-4ded-9d5b-b9dc61d7ab9e.jpg) | [image_000001892_jpg rf 74044ad2084bf8b09ba4b10f8410ac7e](https://user-images.githubusercontent.com/47291136/147809903-3a868611-ed1d-4ded-9d5b-b9dc61d7ab9e.jpg) |
+| ![image_000002235_jpg rf 11c93ed7c29325c2339f9e9e02cd7a5d](https://user-images.githubusercontent.com/47291136/147809778-cc8716af-c91b-4dbb-ac50-6e255761c400.jpg) | ![image_000001892_jpg rf 74044ad2084bf8b09ba4b10f8410ac7e](https://user-images.githubusercontent.com/47291136/147809903-3a868611-ed1d-4ded-9d5b-b9dc61d7ab9e.jpg) | ![image_000001576_jpg rf 5250624f2e5af885ea1d1a20f518ac2b](https://user-images.githubusercontent.com/47291136/147810091-4507992e-966b-4079-971d-b5ce8bd10b06.jpg) |
