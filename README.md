@@ -38,5 +38,13 @@ Here, we are able to pass a number of arguments:
 - **name:** result names
 - **cache:** cache images for faster training
         
-      !python train.py --img <image size> --batch <batch size> --epochs <# of epochs> --data <path to data.yaml> --cfg <path to yolov5s.yaml> --weights '' --name <result file>  --cache
+      !python train.py --img <image size> --batch <batch size> --epochs <# of epochs> --data <path to data.yaml> | 
+      --cfg <path to yolov5s.yaml> --weights '' --name <result file>  --cache
 
+# Evaluate YOLOv5 performance
+  
+  I ran this Notebook in Colab by using its GPU for 100 epochs. Images below present BBox and objectiveness for both training and validation data, detecting precision with recall, mean Average Precision.
+  
+  I decided to discuss only BOX and mAP. BOX is one of the most common evaluation metrics applied in object detection. In general, it defines the area of taken into account shapes and is a good indicator of a loss function. 
+  
+  
