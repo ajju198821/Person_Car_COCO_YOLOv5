@@ -11,7 +11,6 @@ To train our detector we take the following steps:
 * Dataset details
 * Run YOLOv5 training
 * Evaluate YOLOv5 performance
-* Visualize YOLOv5 training data
 * Run YOLOv5 inference on test images
 * Export saved YOLOv5 weights for future inference
 
@@ -47,6 +46,14 @@ The image below shows the performance of model YOLOv5s. We train this model with
      
 From the below metrics, Box is one of the most common evaluation metrics applied in object detection. In general, it defines the area of taken into account shapes and is a good indicator of a loss function. Whereas, mAP - mean Average Precision measures the accuracy of the examined object detector. This is correlated with precision and recall. I ran this [Notebook](https://github.com/ajju198821/Person_Car_COCO_YOLOv5/blob/main/Person_Car_COCO_Train_YOLOv5s.ipynb) on Google Colab. It seems that, even the model trained for 100 epochs, the model not generalized well. 
 
+![results](https://user-images.githubusercontent.com/47291136/147813544-5a629d04-b54e-4169-87c2-1d6f29749700.png)
 
+# Run YOLOv5 inference on test images
 
+    !python detect.py --weights <path to trained weights> --img <image size> --conf <confedance score> --source <path to test images>
 
+# Results
+
+| Test image 1            |  Test Image 2     | Test Image 3 |
+:-------------------------:|:-------------------------:
+![](https://...Dark.png)  |  ![](https://...Ocean.png)
