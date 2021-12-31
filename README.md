@@ -12,7 +12,7 @@ To train our detector we take the following steps:
 * Run YOLOv5 training
 * Evaluate YOLOv5 performance
 * Run YOLOv5 inference on test images
-* Export saved YOLOv5 weights for future inference
+* Results
 
 # Dataset details
 
