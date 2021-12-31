@@ -45,4 +45,8 @@ The image below shows the performance of model YOLOv5s. We train this model with
         batch size: 16
         # no epochs: 100
      
-From the below metrics, Box is one of the most common evaluation metrics applied in object detection. In general, it defines the area of taken into account shapes and is a good indicator of a loss function. Whereas, mAP - mean Average Precision measures the accuracy of the examined object detector. This is correlated with precision and recall. I ran this Notebook
+From the below metrics, Box is one of the most common evaluation metrics applied in object detection. In general, it defines the area of taken into account shapes and is a good indicator of a loss function. Whereas, mAP - mean Average Precision measures the accuracy of the examined object detector. This is correlated with precision and recall. I ran this [Notebook](https://github.com/ajju198821/Person_Car_COCO_YOLOv5/blob/main/Person_Car_COCO_Train_YOLOv5s.ipynb) on Google Colab. It seems that, even the model trained for 100 epochs, the model not generalized well. 
+
+
+
+
