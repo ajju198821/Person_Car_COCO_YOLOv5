@@ -53,4 +53,4 @@ Here, we are able to pass a number of arguments:
   
   | Test image1      | Test image 2 |
 |------------|-------------|
-| <img src="https://media.wired.com/photos/5926db217034dc5f91becd6b/master/w_582,c_limit/so-logo-s.jpg" width="250"> | <img src="https://mk0jobadderjftub56m0.kinstacdn.com/wp-content/uploads/stackoverflow.com-300.jpg" width="250"> |
+| ![image_000002235_jpg rf 11c93ed7c29325c2339f9e9e02cd7a5d](https://user-images.githubusercontent.com/47291136/147809778-cc8716af-c91b-4dbb-ac50-6e255761c400.jpg) | <img src="https://mk0jobadderjftub56m0.kinstacdn.com/wp-content/uploads/stackoverflow.com-300.jpg" width="250"> |
