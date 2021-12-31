@@ -51,6 +51,6 @@ Here, we are able to pass a number of arguments:
   
   # Visualize YOLOv5 results
   
-  | Test image1      | Test image 2 |
-|------------|-------------|
-| ![image_000002235_jpg rf 11c93ed7c29325c2339f9e9e02cd7a5d](https://user-images.githubusercontent.com/47291136/147809778-cc8716af-c91b-4dbb-ac50-6e255761c400.jpg) | <img src="https://mk0jobadderjftub56m0.kinstacdn.com/wp-content/uploads/stackoverflow.com-300.jpg" width="250"> |
+  | Test image 1      | Test image 2 | Test image 3 |
+|------------|-------------|-------------|
+| ![image_000002235_jpg rf 11c93ed7c29325c2339f9e9e02cd7a5d](https://user-images.githubusercontent.com/47291136/147809778-cc8716af-c91b-4dbb-ac50-6e255761c400.jpg) | ![image_000001892_jpg rf 74044ad2084bf8b09ba4b10f8410ac7e](https://user-images.githubusercontent.com/47291136/147809903-3a868611-ed1d-4ded-9d5b-b9dc61d7ab9e.jpg) | [image_000001892_jpg rf 74044ad2084bf8b09ba4b10f8410ac7e](https://user-images.githubusercontent.com/47291136/147809903-3a868611-ed1d-4ded-9d5b-b9dc61d7ab9e.jpg) |
