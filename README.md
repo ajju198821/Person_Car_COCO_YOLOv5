@@ -24,7 +24,7 @@ To train our detector we take the following steps:
        
  Annotation formate of the given dataset (.JSON) is converted to YOLOv5 annotation format by using the [GitHub repo](https://github.com/pylabel-project/samples/blob/main/coco2yolov5.ipynb) and image data splited as test, validation and test sets by [Roboflow](https://roboflow.com). This is a smart web application that automatically interlocks images with labels. It offers many functions such as dataset health check which can recognise incorrectly labelled images or even image transformations like preprocessing and augmentation.
 
-# Train Custom YOLOv5 Detector
+# Train YOLOv5s Detector
 
 Here, we are able to pass a number of arguments:
 - **img:** define input image size
