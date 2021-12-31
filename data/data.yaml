@@ -1,0 +1,6 @@
+names:
+- 'person'
+- 'car'
+nc: 2
+train: NewCOCO-1/train/images
+val: NewCOCO-1/valid/images
