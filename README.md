@@ -54,6 +54,6 @@ From the below metrics, Box is one of the most common evaluation metrics applied
 
 # Results
 
-| Test image 1            |  Test Image 2     | Test Image 3 |
-:-------------------------:|:-------------------------:
-![](https://...Dark.png)  |  ![](https://...Ocean.png)
+| Test Image 1      | Test Image 2     | Test Image 3 |
+|------------|-------------|-------------|
+| <img src="https://media.wired.com/photos/5926db217034dc5f91becd6b/master/w_582,c_limit/so-logo-s.jpg" width="250"> | <img src="https://mk0jobadderjftub56m0.kinstacdn.com/wp-content/uploads/stackoverflow.com-300.jpg" width="250"> |<img src="https://mk0jobadderjftub56m0.kinstacdn.com/wp-content/uploads/stackoverflow.com-300.jpg" width="250"> |
