@@ -47,4 +47,4 @@ Here, we are able to pass a number of arguments:
   
   I decided to discuss only BOX and mAP. BOX is one of the most common evaluation metrics applied in object detection. In general, it defines the area of taken into account shapes and is a good indicator of a loss function. 
   
-  
+  ![](https://user-images.githubusercontent.com/47291136/147809027-82d22d1c-2a3d-42d7-a1c0-625d187dfb71.png)
